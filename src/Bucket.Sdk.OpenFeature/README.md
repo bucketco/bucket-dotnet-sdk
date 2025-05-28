@@ -178,4 +178,4 @@ For support, questions, or feedback, please visit [Bucket's documentation](https
 
 ## License
 
-MIT License Copyright (c) 2025 Bucket ApS
+MIT License
