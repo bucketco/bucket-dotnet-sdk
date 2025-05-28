@@ -520,4 +520,4 @@ await client.UpdateUserAsync(new User(HashString("john@example.com")));
 
 ## License
 
-> MIT License Copyright (c) 2025 Bucket ApS
+> MIT License
