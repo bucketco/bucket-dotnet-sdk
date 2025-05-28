@@ -282,4 +282,4 @@ the [GitHub repository](https://github.com/bucketco/bucket-dotnet-sdk).
 
 ## License
 
-> MIT License Copyright (c) 2025 Bucket ApS
+> MIT License
