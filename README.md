@@ -1,6 +1,6 @@
 # Bucket Community .NET SDK
 
-[![Build & Test](https://github.com/bucketco/bucket-dotnet-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/bucketco/bucket-dotnet-sdk/actions/workflows/ci.yml) [Bucket.Sdk](https://img.shields.io/nuget/v/Bucket.Sdk)
+[![Build & Test](https://github.com/bucketco/bucket-dotnet-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/bucketco/bucket-dotnet-sdk/actions/workflows/ci.yml) ![Bucket.Sdk NuGet Version](https://img.shields.io/nuget/v/Bucket.Sdk) ![Bucket.Sdk.AspNet NuGet Version](https://img.shields.io/nuget/v/Bucket.Sdk.AspNet) ![Bucket.Sdk.OpenFeature NuGet Version](https://img.shields.io/nuget/v/Bucket.Sdk.OpenFeature)
 
 .NET client for [Bucket.co](https://bucket.co).
 
