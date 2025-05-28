@@ -43,9 +43,13 @@ jobs:
         run: dotnet pack src/Bucket.Sdk.AspNet/Bucket.Sdk.AspNet.csproj --configuration Release --no-build --output nupkgs
 
       - name: Publish packages if versions don't exist
+        id: publish
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
+          publishedPackages=""
+          skippedPackages=""
+
           for package in nupkgs/*.nupkg; do
             packageFile=$(basename $package)
             packageName=$(echo $packageFile | sed -r 's/\.[0-9]+\.[0-9]+\.[0-9]+.*\.nupkg$//')
@@ -57,16 +61,53 @@ jobs:
             statusCode=$(curl -s -o /dev/null -w "%{http_code}" "https://www.nuget.org/api/v2/Packages(Id='$packageName',Version='$packageVersion')")
 
             if [ "$statusCode" = "200" ]; then
-              echo "Version $packageVersion of $packageName already exists on NuGet, skipping..."
-              continue
+                echo "Version $packageVersion of $packageName already exists on NuGet, skipping..."
+                skippedPackages="$skippedPackages- $packageName v$packageVersion\n"
+            else
+                echo "Publishing $packageName version $packageVersion to NuGet"
+                dotnet nuget push $package --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json --skip-duplicate
+                publishedPackages="$publishedPackages- $packageName v$packageVersion\n"
             fi
-
-            echo "Publishing $packageName version $packageVersion to NuGet"
-            dotnet nuget push $package --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json --skip-duplicate
           done
+
+          # Set outputs for next step
+          {
+            echo "published-packages<<EOF"
+            echo -e "$publishedPackages"
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
+
+          {
+            echo "skipped-packages<<EOF"
+            echo -e "$skippedPackages"
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
+
+          # Set flag for whether any packages were published
+          if [ -z "$publishedPackages" ]; then
+            echo "has-published=false" >> $GITHUB_OUTPUT
+          else
+            echo "has-published=true" >> $GITHUB_OUTPUT
+          fi
 
       - name: Summary
         run: |
           echo "## NuGet Publishing Complete" >> $GITHUB_STEP_SUMMARY
-          echo "Packages were built and published to NuGet.org" >> $GITHUB_STEP_SUMMARY
-          echo "Package versions higher than currently published ones were pushed." >> $GITHUB_STEP_SUMMARY
+
+          if [ -n "${{ steps.publish.outputs.published-packages }}" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### ✅ Published Packages" >> $GITHUB_STEP_SUMMARY
+            echo "${{ steps.publish.outputs.published-packages }}" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ -n "${{ steps.publish.outputs.skipped-packages }}" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### ⏭️ Skipped Packages (Already Published)" >> $GITHUB_STEP_SUMMARY
+            echo "${{ steps.publish.outputs.skipped-packages }}" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Fail if no packages were published
+          if [ "${{ steps.publish.outputs.has-published }}" = "false" ]; then
+            echo "❌ No packages were published - all packages already exist on NuGet"
+            exit 1
+          fi
