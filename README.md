@@ -59,4 +59,4 @@ You can also [use the HTTP API directly](https://docs.bucket.co/api/http-api)
 
 ## License
 
-> MIT License Copyright (c) 2025 Bucket ApS
+> MIT License
