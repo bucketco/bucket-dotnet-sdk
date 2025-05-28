@@ -1,5 +1,7 @@
 # Bucket .NET SDK
 
+[![Build & Test](https://github.com/bucketco/bucket-dotnet-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/bucketco/bucket-dotnet-sdk/actions/workflows/ci.yml) ![Bucket.Sdk NuGet Version](https://img.shields.io/nuget/v/Bucket.Sdk?label=Bucket.Sdk)
+
 ## Overview
 
 **Bucket.Sdk** is a library for the Bucket feature management SDK. It provides

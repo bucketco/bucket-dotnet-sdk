@@ -1,5 +1,7 @@
 # Bucket SDK for ASP.NET
 
+[![Build & Test](https://github.com/bucketco/bucket-dotnet-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/bucketco/bucket-dotnet-sdk/actions/workflows/ci.yml) ![Bucket.Sdk.AspNet NuGet Version](https://img.shields.io/nuget/v/Bucket.Sdk.AspNet?label=Bucket.Sdk.AspNet)
+
 ## Overview
 
 **Bucket.Sdk.AspNet** is an *ASP.NET Core* integration library for the Bucket feature management SDK. It provides

@@ -1,5 +1,7 @@
 # Bucket SDK for OpenFeature
 
+[![Build & Test](https://github.com/bucketco/bucket-dotnet-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/bucketco/bucket-dotnet-sdk/actions/workflows/ci.yml) ![Bucket.Sdk.OpenFeature NuGet Version](https://img.shields.io/nuget/v/Bucket.Sdk.OpenFeature?label=Bucket.Sdk.OpenFeature)
+
 ## Overview
 
 **Bucket.Sdk.OpenFeature** is an integration library that enables you to use Bucket's feature management capabilities with the [OpenFeature](https://openfeature.dev/) framework. This integration lets you leverage the industry-standard OpenFeature API with Bucket's powerful feature management capabilities.
