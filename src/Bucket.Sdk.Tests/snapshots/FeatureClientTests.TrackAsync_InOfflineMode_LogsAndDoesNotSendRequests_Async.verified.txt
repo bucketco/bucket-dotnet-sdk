@@ -1,0 +1,26 @@
+﻿{
+  "Logs": [
+    {
+      "Level": 2,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "this client is running in offline mode, track event discarded.",
+      "Exception": null
+    }
+  ],
+  "Traces": [
+    {
+      "Name": "feature_flag.tracking",
+      "Tags": [
+        {
+          "Key": "feature_flag.context.event_name",
+          "Value": "test-event"
+        },
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": []
+    }
+  ]
+}

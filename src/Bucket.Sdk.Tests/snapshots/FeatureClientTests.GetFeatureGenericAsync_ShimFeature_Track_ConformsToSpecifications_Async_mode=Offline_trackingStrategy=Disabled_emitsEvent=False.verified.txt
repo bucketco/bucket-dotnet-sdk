@@ -1,0 +1,56 @@
+﻿{
+  "Logs": [
+    {
+      "Level": 3,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "tracking is explicitly disabled, discarded (null)",
+      "Exception": null
+    },
+    {
+      "Level": 3,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "tracking is explicitly disabled, discarded (null)",
+      "Exception": null
+    }
+  ],
+  "Traces": [
+    {
+      "Name": "feature_flag.evaluation",
+      "Tags": [
+        {
+          "Key": "feature_flag.key",
+          "Value": "test-feature-key"
+        },
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.flush",
+      "Tags": [],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.tracking",
+      "Tags": [
+        {
+          "Key": "feature_flag.context.event_name",
+          "Value": "test-feature-key"
+        },
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.flush",
+      "Tags": [],
+      "Events": []
+    }
+  ]
+}

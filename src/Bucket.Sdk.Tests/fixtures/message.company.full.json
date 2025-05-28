@@ -1,0 +1,16 @@
+{
+    "companyId": "company-123",
+    "userId": "user-abc",
+    "attributes": {
+        "name": "Acme Inc.",
+        "industry": "Technology",
+        "size": 250,
+        "isPremium": true,
+        "foundedYear": 2010,
+        "nullValue": null
+    },
+    "context": {
+        "active": true
+    },
+    "type": "company"
+}

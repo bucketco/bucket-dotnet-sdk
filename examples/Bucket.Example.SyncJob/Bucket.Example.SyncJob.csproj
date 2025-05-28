@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>$(Product) Sync Job Example</Title>
+    <Description>Example for $(Product) usage in a sync job.</Description>
+    <RootNamespace>Bucket.Example.SyncJob</RootNamespace>
+  </PropertyGroup>
+
+</Project>

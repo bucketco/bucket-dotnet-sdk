@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <Title>$(Product) Basic Example</Title>
+    <Description>Basic example demonstrating $(Product) features</Description>
+    <RootNamespace>Bucket.Example.Basic</RootNamespace>
+  </PropertyGroup>
+
+</Project>

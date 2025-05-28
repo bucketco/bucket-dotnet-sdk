@@ -1,0 +1,18 @@
+{
+    "key": "api-rate-limits",
+    "action": "check-config",
+    "evalResult": {
+        "limit": 1000,
+        "period": "hour",
+        "throttling": true
+    },
+    "targetingVersion": 3,
+    "evalContext": {
+        "company.tier": "premium",
+        "user.role": "admin"
+    },
+    "evalMissingFields": [
+        "user.usage"
+    ],
+    "type": "feature-flag-event"
+}

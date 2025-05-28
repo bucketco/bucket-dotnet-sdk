@@ -1,0 +1,19 @@
+{
+    "key": "ui-settings",
+    "action": "evaluate-config",
+    "evalResult": {
+        "theme": "dark",
+        "showBanner": true,
+        "maxItems": 50
+    },
+    "targetingVersion": 7,
+    "evalContext": {
+        "user.preferences.darkMode": true
+    },
+    "evalRuleResults": [
+        true,
+        true
+    ],
+    "evalMissingFields": [],
+    "type": "feature-flag-event"
+}

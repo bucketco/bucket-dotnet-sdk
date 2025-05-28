@@ -1,0 +1,256 @@
+﻿{
+  "Logs": [
+    {
+      "Level": 0,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "GET: initiating request to features with: (null)",
+      "Exception": null
+    },
+    {
+      "Level": 0,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "GET: request to features returned: StatusCode: 200, ReasonPhrase: \u0027OK\u0027, Version: 1.1, Content: System.Net.Http.Json.JsonContent, Headers:\n{\n  Content-Type: application/json; charset=utf-8\n}",
+      "Exception": null
+    },
+    {
+      "Level": 1,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "refreshed 2 features definitions",
+      "Exception": null
+    },
+    {
+      "Level": 1,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "flushing 7 output messages",
+      "Exception": null
+    },
+    {
+      "Level": 0,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "POST: initiating request to bulk with: UserMessage { Type = User, UserId = test-user-id, Attributes = Attributes { \u0022name\u0022 = alex }, Metadata =  }, CompanyMessage { Type = Company, CompanyId = test-company-id, UserId = test-user-id, Attributes = Attributes { \u0022name\u0022 = Acme }, Metadata =  }, FeatureEventMessage { Type = Feature, FeatureKey = feature-1, SubType = EvaluateFlag, EvaluationResult = False, TargetingVersion = 2, Context = Attributes { \u0022company.id\u0022 = test-company-id, \u0022company.name\u0022 = Acme, \u0022user.id\u0022 = test-user-id, \u0022user.name\u0022 = alex }, EvaluatedRules = List { False }, MissingFields = List { } }, FeatureEventMessage { Type = Feature, FeatureKey = feature-1, SubType = EvaluateConfig, EvaluationResult = {\u0022key\u0022:\u0022variant-1\u0022,\u0022payload\u0022:{\u0022some\u0022:\u0022value\u0022}}, TargetingVersion = 3, Context = Attributes { \u0022company.id\u0022 = test-company-id, \u0022company.name\u0022 = Acme, \u0022user.id\u0022 = test-user-id, \u0022user.name\u0022 = alex }, EvaluatedRules = List { True }, MissingFields = List { } }, FeatureEventMessage { Type = Feature, FeatureKey = feature-2, SubType = EvaluateFlag, EvaluationResult = False, TargetingVersion = 3, Context = Attributes { \u0022company.id\u0022 = test-company-id, \u0022company.name\u0022 = Acme, \u0022user.id\u0022 = test-user-id, \u0022user.name\u0022 = alex }, EvaluatedRules = List { }, MissingFields = List { } }, FeatureEventMessage { Type = Feature, FeatureKey = feature-1, SubType = CheckFlag, EvaluationResult = False, TargetingVersion = 2, Context = Attributes { \u0022company.id\u0022 = test-company-id, \u0022company.name\u0022 = Acme, \u0022user.id\u0022 = test-user-id, \u0022user.name\u0022 = alex }, EvaluatedRules = List { False }, MissingFields = List { } }, FeatureEventMessage { Type = Feature, FeatureKey = feature-1, SubType = CheckConfig, EvaluationResult = {\u0022key\u0022:\u0022variant-1\u0022,\u0022payload\u0022:{\u0022some\u0022:\u0022value\u0022}}, TargetingVersion = 3, Context = Attributes { \u0022company.id\u0022 = test-company-id, \u0022company.name\u0022 = Acme, \u0022user.id\u0022 = test-user-id, \u0022user.name\u0022 = alex }, EvaluatedRules = List { True }, MissingFields = List { } }",
+      "Exception": null
+    },
+    {
+      "Level": 0,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "POST: request to bulk returned: StatusCode: 200, ReasonPhrase: \u0027OK\u0027, Version: 1.1, Content: System.Net.Http.Json.JsonContent, Headers:\n{\n  Content-Type: application/json; charset=utf-8\n}",
+      "Exception": null
+    },
+    {
+      "Level": 0,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "POST: initiating request to event with: TrackEventMessage { Name = feature-1, UserId = test-user-id, CompanyId = test-company-id, Attributes = Attributes { }, Metadata =  }",
+      "Exception": null
+    },
+    {
+      "Level": 0,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "POST: request to event returned: StatusCode: 200, ReasonPhrase: \u0027OK\u0027, Version: 1.1, Content: System.Net.Http.Json.JsonContent, Headers:\n{\n  Content-Type: application/json; charset=utf-8\n}",
+      "Exception": null
+    }
+  ],
+  "Traces": [
+    {
+      "Name": "feature_flag.user_update",
+      "Tags": [
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.company_update",
+      "Tags": [
+        {
+          "Key": "feature_flag.context.company_id",
+          "Value": "test-company-id"
+        },
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.refresh",
+      "Tags": [],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.evaluation",
+      "Tags": [
+        {
+          "Key": "feature_flag.key",
+          "Value": "feature-1"
+        },
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        },
+        {
+          "Key": "feature_flag.context.organization_id",
+          "Value": "test-company-id"
+        }
+      ],
+      "Events": [
+        {
+          "Name": "feature_flag.evaluated",
+          "Tags": [
+            {
+              "Key": "feature_flag.key",
+              "Value": "feature-1"
+            },
+            {
+              "Key": "feature_flag.version",
+              "Value": 2
+            },
+            {
+              "Key": "feature_flag.config.key",
+              "Value": "variant-1"
+            },
+            {
+              "Key": "feature_flag.overridden",
+              "Value": false
+            },
+            {
+              "Key": "feature_flag.enabled",
+              "Value": false
+            },
+            {
+              "Key": "feature_flag.issues.missing_fields",
+              "Value": []
+            },
+            {
+              "Key": "feature_flag.issues.invalid_fields",
+              "Value": []
+            },
+            {
+              "Key": "feature_flag.config.issues.missing_fields",
+              "Value": []
+            },
+            {
+              "Key": "feature_flag.config.issues.invalid_fields",
+              "Value": []
+            }
+          ]
+        },
+        {
+          "Name": "feature_flag.evaluated",
+          "Tags": [
+            {
+              "Key": "feature_flag.key",
+              "Value": "feature-2"
+            },
+            {
+              "Key": "feature_flag.version",
+              "Value": 3
+            },
+            {
+              "Key": "feature_flag.overridden",
+              "Value": false
+            },
+            {
+              "Key": "feature_flag.enabled",
+              "Value": false
+            },
+            {
+              "Key": "feature_flag.issues.missing_fields",
+              "Value": []
+            },
+            {
+              "Key": "feature_flag.issues.invalid_fields",
+              "Value": []
+            }
+          ]
+        },
+        {
+          "Name": "feature_flag.evaluated",
+          "Tags": [
+            {
+              "Key": "feature_flag.key",
+              "Value": "feature-1"
+            },
+            {
+              "Key": "feature_flag.version",
+              "Value": 2
+            },
+            {
+              "Key": "feature_flag.config.key",
+              "Value": "variant-1"
+            },
+            {
+              "Key": "feature_flag.overridden",
+              "Value": false
+            },
+            {
+              "Key": "feature_flag.enabled",
+              "Value": false
+            },
+            {
+              "Key": "feature_flag.issues.missing_fields",
+              "Value": []
+            },
+            {
+              "Key": "feature_flag.issues.invalid_fields",
+              "Value": []
+            },
+            {
+              "Key": "feature_flag.config.issues.missing_fields",
+              "Value": []
+            },
+            {
+              "Key": "feature_flag.config.issues.invalid_fields",
+              "Value": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "feature_flag.event",
+      "Tags": [],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.event",
+      "Tags": [],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.flush",
+      "Tags": [],
+      "Events": [
+        {
+          "Name": "feature_flag.output_events_flushed",
+          "Tags": []
+        }
+      ]
+    },
+    {
+      "Name": "feature_flag.tracking",
+      "Tags": [
+        {
+          "Key": "feature_flag.context.event_name",
+          "Value": "feature-1"
+        },
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        },
+        {
+          "Key": "feature_flag.context.company_id",
+          "Value": "test-company-id"
+        }
+      ],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.flush",
+      "Tags": [],
+      "Events": []
+    }
+  ]
+}

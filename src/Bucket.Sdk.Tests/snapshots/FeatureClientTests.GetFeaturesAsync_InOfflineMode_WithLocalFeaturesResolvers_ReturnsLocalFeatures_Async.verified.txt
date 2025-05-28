@@ -1,0 +1,50 @@
+﻿{
+  "Logs": [],
+  "Traces": [
+    {
+      "Name": "feature_flag.evaluation",
+      "Tags": [
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": [
+        {
+          "Name": "feature_flag.evaluated",
+          "Tags": [
+            {
+              "Key": "feature_flag.key",
+              "Value": "feature-1"
+            },
+            {
+              "Key": "feature_flag.overridden",
+              "Value": false
+            },
+            {
+              "Key": "feature_flag.enabled",
+              "Value": true
+            }
+          ]
+        },
+        {
+          "Name": "feature_flag.evaluated",
+          "Tags": [
+            {
+              "Key": "feature_flag.key",
+              "Value": "feature-2"
+            },
+            {
+              "Key": "feature_flag.overridden",
+              "Value": false
+            },
+            {
+              "Key": "feature_flag.enabled",
+              "Value": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

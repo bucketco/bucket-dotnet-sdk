@@ -1,0 +1,15 @@
+﻿{
+  "Logs": [],
+  "Traces": [
+    {
+      "Name": "feature_flag.evaluation",
+      "Tags": [
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": []
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+﻿{
+  "Logs": [
+    {
+      "Level": 1,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "this client is not running in local evaluation mode, not refreshing features definitions.",
+      "Exception": null
+    }
+  ],
+  "Traces": [
+    {
+      "Name": "feature_flag.refresh",
+      "Tags": [],
+      "Events": []
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+@model IEnumerable<TodoModel>
+
+@{
+    ViewData["Title"] = "Todo List";
+}
+
+<h1>Todo List</h1>
+
+<p>
+    <a asp-action="Create" feature="create-todo" class="btn btn-primary">Create New</a>
+</p>
+
+@if (!Model.Any())
+{
+    <div show-when-feature-enabled="list-todos" class="alert alert-info">
+        No todos found. Create one to get started.
+    </div>
+    <div show-when-feature-disabled="list-todos" class="alert alert-info">
+        You don't have permission to see the todo list.
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Content</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Content</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"
+                            enable-when-feature-enabled="delete-todo">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

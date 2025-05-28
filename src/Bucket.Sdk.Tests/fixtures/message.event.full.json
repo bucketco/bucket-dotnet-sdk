@@ -1,0 +1,17 @@
+{
+    "event": "purchase_completed",
+    "userId": "user-123",
+    "companyId": "company-456",
+    "attributes": {
+        "eventName": "purchase_completed",
+        "amount": 99.99,
+        "currency": "USD",
+        "items.0.id": "product-001",
+        "items.0.name": "Premium Subscription",
+        "items.0.quantity": 1,
+        "timestamp": "2023-05-20T15:45:30Z"
+    },
+    "context": {
+        "active": true
+    }
+}

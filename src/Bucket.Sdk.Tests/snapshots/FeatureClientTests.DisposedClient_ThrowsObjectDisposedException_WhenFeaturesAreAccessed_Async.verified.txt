@@ -1,0 +1,151 @@
+﻿{
+  "Logs": [
+    {
+      "Level": 0,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "GET: initiating request to features/evaluated?context.user.id=test-user-id with: (null)",
+      "Exception": null
+    },
+    {
+      "Level": 0,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "GET: request to features/evaluated?context.user.id=test-user-id returned: StatusCode: 404, ReasonPhrase: \u0027Not Found\u0027, Version: 1.1, Content: System.Net.Http.EmptyContent, Headers:\n{\n  Content-Length: 0\n}",
+      "Exception": null
+    },
+    {
+      "Level": 4,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "GET: invalid NotFound response received from features/evaluated?context.user.id=test-user-id: (null)",
+      "Exception": null
+    },
+    {
+      "Level": 4,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "failed to evaluate remotely",
+      "Exception": null
+    },
+    {
+      "Level": 1,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "message UserMessage { Type = User, UserId = test-user-id, Attributes = Attributes { }, Metadata =  } will not be sent (rate limited)",
+      "Exception": null
+    },
+    {
+      "Level": 0,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "GET: initiating request to features/evaluated?context.user.id=test-user-id with: (null)",
+      "Exception": null
+    },
+    {
+      "Level": 0,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "GET: request to features/evaluated?context.user.id=test-user-id returned: StatusCode: 404, ReasonPhrase: \u0027Not Found\u0027, Version: 1.1, Content: System.Net.Http.EmptyContent, Headers:\n{\n  Content-Length: 0\n}",
+      "Exception": null
+    },
+    {
+      "Level": 4,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "GET: invalid NotFound response received from features/evaluated?context.user.id=test-user-id: (null)",
+      "Exception": null
+    },
+    {
+      "Level": 4,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "failed to evaluate remotely",
+      "Exception": null
+    }
+  ],
+  "Traces": [
+    {
+      "Name": "feature_flag.user_update",
+      "Tags": [
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.evaluation",
+      "Tags": [
+        {
+          "Key": "feature_flag.key",
+          "Value": "test-feature-key"
+        },
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.user_update",
+      "Tags": [
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.evaluation",
+      "Tags": [
+        {
+          "Key": "feature_flag.key",
+          "Value": "test-feature-key"
+        },
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.event",
+      "Tags": [],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.tracking",
+      "Tags": [
+        {
+          "Key": "feature_flag.context.event_name",
+          "Value": "test-feature-key"
+        },
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.event",
+      "Tags": [],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.event",
+      "Tags": [],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.tracking",
+      "Tags": [
+        {
+          "Key": "feature_flag.context.event_name",
+          "Value": "test-feature-key"
+        },
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": []
+    }
+  ]
+}

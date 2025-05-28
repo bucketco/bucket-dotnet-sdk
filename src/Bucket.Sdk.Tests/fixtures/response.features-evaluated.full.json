@@ -1,0 +1,51 @@
+{
+    "success": true,
+    "features": [
+        {
+            "key": "feature-1",
+            "isEnabled": false,
+            "targetingVersion": 19,
+            "config": {
+                "key": "gpt-4.5-mini",
+                "version": 2,
+                "payload": {
+                    "maxTokens": 2000
+                },
+                "missingContextFields": [
+                    "company.tier"
+                ],
+                "ruleEvaluationResults": [
+                    true
+                ]
+            },
+            "missingContextFields": [
+                "user.name",
+                "other.level"
+            ],
+            "ruleEvaluationResults": [
+                true,
+                false,
+                true
+            ]
+        },
+        {
+            "key": "feature-2",
+            "isEnabled": true,
+            "targetingVersion": 11
+        },
+        {
+            "key": "feature-3",
+            "isEnabled": true,
+            "targetingVersion": 1,
+            "config": {
+                "key": "variant-b",
+                "version": 2,
+                "missingContextFields": [],
+                "ruleEvaluationResults": []
+            },
+            "missingContextFields": [],
+            "ruleEvaluationResults": []
+        }
+    ],
+    "remoteContextUsed": true
+}

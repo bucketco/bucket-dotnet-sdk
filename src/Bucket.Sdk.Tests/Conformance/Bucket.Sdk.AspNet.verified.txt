@@ -1,0 +1,58 @@
+﻿namespace Bucket.Sdk
+{
+    public static class ApplicationBuilderExtensions
+    {
+        public static Microsoft.AspNetCore.Builder.IApplicationBuilder UseMiddlewareWhenFeature<T>(this Microsoft.AspNetCore.Builder.IApplicationBuilder app, string featureKey) { }
+        public static Microsoft.AspNetCore.Builder.IApplicationBuilder UseMiddlewareWhenNotFeature<T>(this Microsoft.AspNetCore.Builder.IApplicationBuilder app, string featureKey) { }
+        public static Microsoft.AspNetCore.Builder.IApplicationBuilder UseWhenFeature(this Microsoft.AspNetCore.Builder.IApplicationBuilder app, string featureKey, System.Action<Microsoft.AspNetCore.Builder.IApplicationBuilder> configure) { }
+        public static Microsoft.AspNetCore.Builder.IApplicationBuilder UseWhenNotFeature(this Microsoft.AspNetCore.Builder.IApplicationBuilder app, string featureKey, System.Action<Microsoft.AspNetCore.Builder.IApplicationBuilder> configure) { }
+    }
+    public static class ControllerExtensions
+    {
+        public static System.Threading.Tasks.Task<Bucket.Sdk.IFeature> GetFeatureAsync(this Microsoft.AspNetCore.Mvc.Controller controller, string featureKey) { }
+        public static System.Threading.Tasks.Task<Bucket.Sdk.IFeature<TPayload>> GetFeatureAsync<TPayload>(this Microsoft.AspNetCore.Mvc.Controller controller, string featureKey) { }
+    }
+    public static class EndpointConventionBuilderExtensions
+    {
+        public static Microsoft.AspNetCore.Builder.IEndpointConventionBuilder WithFeatureRestriction(this Microsoft.AspNetCore.Builder.IEndpointConventionBuilder builder, string featureKey, bool enabled = true) { }
+    }
+    [System.AttributeUsage(System.AttributeTargets.Class | System.AttributeTargets.Method, AllowMultiple=true)]
+    [System.Diagnostics.DebuggerDisplay("Feature: `{FeatureKey}`, RequiresEnabled: `{RequireEnabled}`")]
+    public sealed class FeatureRestrictedAttribute : Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute, Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter, Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata
+    {
+        public FeatureRestrictedAttribute(string featureKey, bool enabled = true) { }
+        public string FeatureKey { get; }
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        public bool RequireDisabled { get; set; }
+        public bool RequireEnabled { get; set; }
+        public override System.Threading.Tasks.Task OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext context, Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate next) { }
+        public System.Threading.Tasks.Task OnPageHandlerExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.PageHandlerExecutingContext context, Microsoft.AspNetCore.Mvc.Filters.PageHandlerExecutionDelegate next) { }
+        public System.Threading.Tasks.Task OnPageHandlerSelectionAsync(Microsoft.AspNetCore.Mvc.Filters.PageHandlerSelectedContext context) { }
+    }
+    public static class FeatureServiceBuilderExtensions
+    {
+        public static Bucket.Sdk.IFeatureServiceBuilder UseContextResolver(this Bucket.Sdk.IFeatureServiceBuilder builder, Bucket.Sdk.ResolveEvaluationContextAsyncDelegate resolver) { }
+        public static Bucket.Sdk.IFeatureServiceBuilder UseRestrictedFeatureHandler(this Bucket.Sdk.IFeatureServiceBuilder builder, Bucket.Sdk.RestrictedFeatureActionHandlerAsyncDelegate handler) { }
+        public static Bucket.Sdk.IFeatureServiceBuilder UseRestrictedFeatureHandler(this Bucket.Sdk.IFeatureServiceBuilder builder, Bucket.Sdk.RestrictedFeatureEndpointHandlerAsyncDelegate handler) { }
+    }
+    public static class FilterCollectionExtensions
+    {
+        public static Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata AddFeatureRestricted<TFilter>(this Microsoft.AspNetCore.Mvc.Filters.FilterCollection filters, string featureKey)
+            where TFilter : Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter { }
+    }
+    public static class HttpContextExtensions
+    {
+        [return: System.Runtime.CompilerServices.TupleElementNames(new string[] {
+                "context",
+                "trackingStrategy"})]
+        public static System.Threading.Tasks.ValueTask<System.ValueTuple<Bucket.Sdk.Context, Bucket.Sdk.TrackingStrategy>> GetEvaluationContextAsync(this Microsoft.AspNetCore.Http.HttpContext httpContext) { }
+        public static System.Threading.Tasks.Task<Bucket.Sdk.IFeature> GetFeatureAsync(this Microsoft.AspNetCore.Http.HttpContext context, string featureKey) { }
+        public static System.Threading.Tasks.Task<Bucket.Sdk.IFeature<TPayload>> GetFeatureAsync<TPayload>(this Microsoft.AspNetCore.Http.HttpContext context, string featureKey) { }
+    }
+    [return: System.Runtime.CompilerServices.TupleElementNames(new string[] {
+            "context",
+            "trackingStrategy"})]
+    public delegate System.Threading.Tasks.ValueTask<System.ValueTuple<Bucket.Sdk.Context, Bucket.Sdk.TrackingStrategy>> ResolveEvaluationContextAsyncDelegate(Microsoft.AspNetCore.Http.HttpContext httpContext);
+    public delegate System.Threading.Tasks.ValueTask<Microsoft.AspNetCore.Mvc.IActionResult> RestrictedFeatureActionHandlerAsyncDelegate(Bucket.Sdk.IFeature feature, Microsoft.AspNetCore.Mvc.Filters.FilterContext context);
+    public delegate System.Threading.Tasks.ValueTask<object?> RestrictedFeatureEndpointHandlerAsyncDelegate(Bucket.Sdk.IFeature feature, Microsoft.AspNetCore.Http.EndpointFilterInvocationContext context);
+}

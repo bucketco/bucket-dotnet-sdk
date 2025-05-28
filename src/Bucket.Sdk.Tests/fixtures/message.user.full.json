@@ -1,0 +1,15 @@
+{
+    "userId": "user-456",
+    "attributes": {
+        "email": "john.doe@example.com",
+        "age": 32,
+        "isPremium": false,
+        "lastLogin": "2023-04-15T10:30:00Z",
+        "preferences.theme": "dark",
+        "preferences.notifications": true
+    },
+    "context": {
+        "active": true
+    },
+    "type": "user"
+}

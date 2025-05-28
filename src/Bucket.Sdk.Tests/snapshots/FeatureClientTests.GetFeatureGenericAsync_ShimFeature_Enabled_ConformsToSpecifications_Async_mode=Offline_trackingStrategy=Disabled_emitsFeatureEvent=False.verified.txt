@@ -1,0 +1,47 @@
+﻿{
+  "Logs": [
+    {
+      "Level": 3,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "tracking is explicitly disabled, discarded (null)",
+      "Exception": null
+    },
+    {
+      "Level": 2,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "this client is running in offline mode, feature event discarded.",
+      "Exception": null
+    }
+  ],
+  "Traces": [
+    {
+      "Name": "feature_flag.evaluation",
+      "Tags": [
+        {
+          "Key": "feature_flag.key",
+          "Value": "test-feature-key"
+        },
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.flush",
+      "Tags": [],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.event",
+      "Tags": [],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.flush",
+      "Tags": [],
+      "Events": []
+    }
+  ]
+}

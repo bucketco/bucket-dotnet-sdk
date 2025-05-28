@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Title>$(Product) ASP.NET SDK</Title>
+    <Description>ASP.NET integration for $(Product)</Description>
+    <PackageTags>$(CommonPackageTags);aspnet;aspnetcore</PackageTags>
+
+    <Version>$(BucketSdkAspNetVersion)</Version>
+    <AssemblyVersion>$(BucketSdkAspNetVersion)</AssemblyVersion>
+    <FileVersion>$(BucketSdkAspNetVersion)</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bucket.Sdk\Bucket.Sdk.csproj"/>
+  </ItemGroup>
+
+</Project>

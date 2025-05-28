@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+      <Title>$(Product) OpenFeature Example</Title>
+      <Description>Example demonstrating $(Product) with OpenFeature integration</Description>
+      <RootNamespace>Bucket.Example.OpenFeature</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Bucket.Sdk.OpenFeature\Bucket.Sdk.OpenFeature.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.*"/>
+      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.*"/>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.*"/>
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="9.*"/>
+      <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.*"/>
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.*"/>
+      <PackageReference Include="OpenFeature" Version="2.*"/>
+      <PackageReference Include="OpenFeature.DependencyInjection" Version="2.*"/>
+      <PackageReference Include="OpenFeature.Hosting" Version="2.*"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="appsettings.json">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

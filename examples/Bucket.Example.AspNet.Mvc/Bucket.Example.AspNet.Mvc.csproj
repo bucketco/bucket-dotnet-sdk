@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <Title>$(Product) ASP.NET MVC Example</Title>
+    <Description>ASP.NET MVC example demonstrating $(Product) features</Description>
+    <RootNamespace>Bucket.Example.AspNet.Mvc</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Bucket.Sdk.AspNet\Bucket.Sdk.AspNet.csproj"/>
+  </ItemGroup>
+
+</Project>

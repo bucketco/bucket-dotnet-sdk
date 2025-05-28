@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>$(Product) OpenFeature Provider</Title>
+    <Description>$(Product) OpenFeature Provider</Description>
+    <PackageTags>$(CommonPackageTags);openfeature</PackageTags>
+
+    <Version>$(BucketSdkOpenFeatureVersion)</Version>
+    <AssemblyVersion>$(BucketSdkOpenFeatureVersion)</AssemblyVersion>
+    <FileVersion>$(BucketSdkOpenFeatureVersion)</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenFeature" Version="2.*"/>
+    <PackageReference Include="OpenFeature.DependencyInjection" Version="2.*"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bucket.Sdk\Bucket.Sdk.csproj"/>
+  </ItemGroup>
+
+</Project>

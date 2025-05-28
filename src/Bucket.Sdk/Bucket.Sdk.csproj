@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>$(Product)</Title>
+    <Description>$(Product)</Description>
+    <PackageTags>$(CommonPackageTags)</PackageTags>
+
+    <Version>$(BucketSdkVersion)</Version>
+    <AssemblyVersion>$(BucketSdkVersion)</AssemblyVersion>
+    <FileVersion>$(BucketSdkVersion)</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.*"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.*"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.*"/>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.*"/>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="9.*"/>
+    <PackageReference Include="System.Net.Http.Json" Version="9.*"/>
+    <PackageReference Include="System.Text.Json" Version="9.*"/>
+  </ItemGroup>
+
+</Project>

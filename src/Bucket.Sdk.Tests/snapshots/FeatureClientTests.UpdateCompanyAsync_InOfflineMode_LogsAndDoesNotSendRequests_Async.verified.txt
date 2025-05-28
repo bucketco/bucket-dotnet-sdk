@@ -1,0 +1,22 @@
+﻿{
+  "Logs": [
+    {
+      "Level": 2,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "this client is running in offline mode, company update discarded.",
+      "Exception": null
+    }
+  ],
+  "Traces": [
+    {
+      "Name": "feature_flag.company_update",
+      "Tags": [
+        {
+          "Key": "feature_flag.context.company_id",
+          "Value": "test-company-id"
+        }
+      ],
+      "Events": []
+    }
+  ]
+}

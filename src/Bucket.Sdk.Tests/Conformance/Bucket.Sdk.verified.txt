@@ -1,0 +1,208 @@
+﻿namespace Bucket.Sdk
+{
+    [System.Text.Json.Serialization.JsonConverter(typeof(Bucket.Sdk.Any.JsonConverter?))]
+    public readonly struct Any : System.IEquatable<Bucket.Sdk.Any>
+    {
+        public T? As<T>() { }
+        public bool Equals(Bucket.Sdk.Any other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+        public override string ToString() { }
+        public bool TryAs<T>(out T? value) { }
+        public bool TryAsBoolean(out bool value) { }
+        public bool TryAsDateTime(out System.DateTime value) { }
+        public bool TryAsDateTimeOffset(out System.DateTimeOffset value) { }
+        public bool TryAsDouble(out double value) { }
+        public bool TryAsGuid(out System.Guid value) { }
+        public bool TryAsInt32(out int value) { }
+        public bool TryAsString(out string? value) { }
+        public static Bucket.Sdk.Any op_Implicit(System.DateOnly value) { }
+        public static Bucket.Sdk.Any op_Implicit(System.DateTime value) { }
+        public static Bucket.Sdk.Any op_Implicit(System.DateTimeOffset value) { }
+        public static Bucket.Sdk.Any op_Implicit(System.Guid value) { }
+        public static Bucket.Sdk.Any op_Implicit(System.Text.Json.JsonElement value) { }
+        public static Bucket.Sdk.Any op_Implicit(System.TimeOnly value) { }
+        public static Bucket.Sdk.Any op_Implicit(bool value) { }
+        public static Bucket.Sdk.Any op_Implicit(double value) { }
+        public static Bucket.Sdk.Any op_Implicit(int value) { }
+        public static Bucket.Sdk.Any op_Implicit(string value) { }
+        public static bool operator !=(Bucket.Sdk.Any left, Bucket.Sdk.Any right) { }
+        public static bool operator ==(Bucket.Sdk.Any left, Bucket.Sdk.Any right) { }
+    }
+    public sealed class BucketFeatureServiceGuard
+    {
+        public BucketFeatureServiceGuard() { }
+        public static void EnsureRegistered(System.IServiceProvider serviceProvider) { }
+    }
+    public sealed record Company : Bucket.Sdk.EntityBase, System.IEquatable<Bucket.Sdk.Company>
+    {
+        public Company(string id) { }
+        public System.Uri? Avatar { get; init; }
+        public string Id { get; }
+        public string? Name { get; init; }
+        public bool Equals(Bucket.Sdk.Company? other) { }
+        public override int GetHashCode() { }
+        protected override System.Collections.Generic.IReadOnlyDictionary<string, object?> ToFields() { }
+    }
+    [System.Runtime.CompilerServices.RequiredMember]
+    public sealed class Configuration
+    {
+        [System.Obsolete("Constructors of types with required members are not supported in this version of " +
+            "your compiler.", true)]
+        public Configuration() { }
+        public System.Uri ApiBaseUri { get; set; }
+        public Bucket.Sdk.Configuration.FeaturesConfiguration Features { get; }
+        public Bucket.Sdk.OperationMode Mode { get; set; }
+        public Bucket.Sdk.Configuration.OutputConfiguration Output { get; }
+        [System.Runtime.CompilerServices.RequiredMember]
+        public string SecretKey { get; init; }
+        public static Bucket.Sdk.Configuration FromConfiguration(Microsoft.Extensions.Configuration.IConfiguration configuration, string section = "Bucket") { }
+        public sealed class FeaturesConfiguration
+        {
+            public FeaturesConfiguration() { }
+            public System.TimeSpan RefreshInterval { get; set; }
+            public System.TimeSpan StaleAge { get; set; }
+        }
+        public sealed class OutputConfiguration
+        {
+            public OutputConfiguration() { }
+            public System.TimeSpan FlushInterval { get; set; }
+            public int MaxMessages { get; set; }
+            public System.TimeSpan RollingWindow { get; set; }
+        }
+    }
+    public sealed record Context : Bucket.Sdk.EntityBase, System.IEquatable<Bucket.Sdk.Context>
+    {
+        public Context() { }
+        public Bucket.Sdk.Company? Company { get; init; }
+        public Bucket.Sdk.User? User { get; init; }
+        public bool Equals(Bucket.Sdk.Context? other) { }
+        public override int GetHashCode() { }
+        protected override System.Collections.Generic.IReadOnlyDictionary<string, object?> ToFields() { }
+    }
+    [System.Diagnostics.DebuggerDisplay("{ToFields(),nq}")]
+    public abstract record EntityBase : System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, object?>>, System.Collections.IEnumerable, System.IEquatable<Bucket.Sdk.EntityBase>
+    {
+        protected EntityBase() { }
+        public int Count { get; }
+        public object? this[string key] { get; set; }
+        public void Add(string key, object? value) { }
+        public virtual bool Equals(Bucket.Sdk.EntityBase? other) { }
+        public System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<string, object?>> GetEnumerator() { }
+        public override int GetHashCode() { }
+        protected virtual bool PrintMembers(System.Text.StringBuilder builder) { }
+        protected abstract System.Collections.Generic.IReadOnlyDictionary<string, object?> ToFields();
+    }
+    public sealed record EvaluatedFeature : System.IEquatable<Bucket.Sdk.EvaluatedFeature>
+    {
+        public EvaluatedFeature(string key, bool enabled, bool override = false) { }
+        public EvaluatedFeature(string key, bool enabled, [System.Runtime.CompilerServices.TupleElementNames(new string[] {
+                "key",
+                "payload"})] System.ValueTuple<string, Bucket.Sdk.Any>? config, bool override = false) { }
+        [System.Runtime.CompilerServices.TupleElementNames(new string?[]?[] {
+                "Key",
+                "Payload"})]
+        public System.ValueTuple<string, Bucket.Sdk.Any>? Config { get; init; }
+        public bool Enabled { get; init; }
+        public string Key { get; }
+        public bool Override { get; init; }
+        public bool Equals(Bucket.Sdk.EvaluatedFeature? other) { }
+        public override int GetHashCode() { }
+    }
+    public sealed record Event : Bucket.Sdk.EntityBase, System.IEquatable<Bucket.Sdk.Event>
+    {
+        public Event(string name, Bucket.Sdk.User user) { }
+        public Bucket.Sdk.Company? Company { get; init; }
+        public string Name { get; }
+        public Bucket.Sdk.User User { get; }
+        public bool Equals(Bucket.Sdk.Event? other) { }
+        public override int GetHashCode() { }
+        protected override System.Collections.Generic.IReadOnlyDictionary<string, object?> ToFields() { }
+    }
+    public sealed class FeatureClient : Bucket.Sdk.IFeatureClient, System.IAsyncDisposable, System.IDisposable
+    {
+        public FeatureClient(Bucket.Sdk.Configuration configuration, Microsoft.Extensions.Logging.ILogger<Bucket.Sdk.FeatureClient>? logger = null, System.Collections.Generic.IEnumerable<Bucket.Sdk.ResolveLocalFeaturesAsyncDelegate>? localFeaturesResolvers = null) { }
+        public bool Disposed { get; }
+        public void Dispose() { }
+        public System.Threading.Tasks.ValueTask DisposeAsync() { }
+        protected override void Finalize() { }
+        public System.Threading.Tasks.Task FlushAsync() { }
+        public System.Threading.Tasks.Task<Bucket.Sdk.IFeature> GetFeatureAsync(string key, Bucket.Sdk.Context context, Bucket.Sdk.TrackingStrategy trackingStrategy = 0) { }
+        public System.Threading.Tasks.Task<Bucket.Sdk.IFeature<TPayload>> GetFeatureAsync<TPayload>(string key, Bucket.Sdk.Context context, Bucket.Sdk.TrackingStrategy trackingStrategy = 0) { }
+        public System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyDictionary<string, Bucket.Sdk.EvaluatedFeature>> GetFeaturesAsync(Bucket.Sdk.Context context) { }
+        public System.Threading.Tasks.Task RefreshAsync() { }
+        public System.Threading.Tasks.Task TrackAsync(Bucket.Sdk.Event @event, Bucket.Sdk.UpdateStrategy updateStrategy = 0) { }
+        public System.Threading.Tasks.Task UpdateCompanyAsync(Bucket.Sdk.Company company, Bucket.Sdk.User? user = null, Bucket.Sdk.UpdateStrategy updateStrategy = 0) { }
+        public System.Threading.Tasks.Task UpdateUserAsync(Bucket.Sdk.User user, Bucket.Sdk.UpdateStrategy updateStrategy = 0) { }
+    }
+    public interface IFeature
+    {
+        bool Enabled { get; }
+        string Key { get; }
+        void Track();
+    }
+    public interface IFeatureClient
+    {
+        System.Threading.Tasks.Task FlushAsync();
+        System.Threading.Tasks.Task<Bucket.Sdk.IFeature> GetFeatureAsync(string key, Bucket.Sdk.Context context, Bucket.Sdk.TrackingStrategy trackingStrategy = 0);
+        System.Threading.Tasks.Task<Bucket.Sdk.IFeature<TPayload>> GetFeatureAsync<TPayload>(string key, Bucket.Sdk.Context context, Bucket.Sdk.TrackingStrategy trackingStrategy = 0);
+        System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyDictionary<string, Bucket.Sdk.EvaluatedFeature>> GetFeaturesAsync(Bucket.Sdk.Context context);
+        System.Threading.Tasks.Task RefreshAsync();
+        System.Threading.Tasks.Task TrackAsync(Bucket.Sdk.Event @event, Bucket.Sdk.UpdateStrategy updateStrategy = 0);
+        System.Threading.Tasks.Task UpdateCompanyAsync(Bucket.Sdk.Company company, Bucket.Sdk.User? user = null, Bucket.Sdk.UpdateStrategy updateStrategy = 0);
+        System.Threading.Tasks.Task UpdateUserAsync(Bucket.Sdk.User user, Bucket.Sdk.UpdateStrategy updateStrategy = 0);
+    }
+    public interface IFeatureServiceBuilder
+    {
+        Microsoft.Extensions.DependencyInjection.IServiceCollection Services { get; }
+        Bucket.Sdk.IFeatureServiceBuilder AddLocalFeatures(params Bucket.Sdk.EvaluatedFeature[] features);
+        Bucket.Sdk.IFeatureServiceBuilder AddLocalFeatures(Bucket.Sdk.ResolveLocalFeaturesAsyncDelegate localFeaturesResolver);
+    }
+    public interface IFeature<TPayload> : Bucket.Sdk.IFeature
+    {
+        [System.Runtime.CompilerServices.TupleElementNames(new string[] {
+                "Key",
+                "Payload"})]
+        System.ValueTuple<string?, TPayload?> Config { get; }
+    }
+    public enum OperationMode
+    {
+        Offline = 0,
+        LocalEvaluation = 1,
+        RemoteEvaluation = 2,
+    }
+    public delegate System.Threading.Tasks.ValueTask<System.Collections.Generic.IEnumerable<Bucket.Sdk.EvaluatedFeature>> ResolveLocalFeaturesAsyncDelegate(Bucket.Sdk.Context context, System.Threading.CancellationToken cancellationToken);
+    public static class ServiceCollectionExtensions
+    {
+        public static Bucket.Sdk.IFeatureServiceBuilder AddBucketFeatures(this Microsoft.Extensions.DependencyInjection.IServiceCollection services) { }
+        public static Bucket.Sdk.IFeatureServiceBuilder AddBucketFeatures(this Microsoft.Extensions.DependencyInjection.IServiceCollection services, Bucket.Sdk.Configuration configuration) { }
+    }
+    public static class Telemetry
+    {
+        public const string ActivitySourceName = "Bucket.Features";
+    }
+    public enum TrackingStrategy
+    {
+        Default = 0,
+        Disabled = 1,
+        Active = 2,
+        Inactive = 3,
+    }
+    public enum UpdateStrategy
+    {
+        Default = 0,
+        Active = 1,
+        Inactive = 2,
+    }
+    public sealed record User : Bucket.Sdk.EntityBase, System.IEquatable<Bucket.Sdk.User>
+    {
+        public User(string id) { }
+        public System.Uri? Avatar { get; init; }
+        public string? Email { get; init; }
+        public string Id { get; }
+        public string? Name { get; init; }
+        public bool Equals(Bucket.Sdk.User? other) { }
+        public override int GetHashCode() { }
+        protected override System.Collections.Generic.IReadOnlyDictionary<string, object?> ToFields() { }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "key": "beta-feature",
+    "action": "evaluate-is-enabled",
+    "evalResult": false,
+    "targetingVersion": 2,
+    "evalContext": {
+        "user.email": "test@example.com",
+        "company.id": "company-xyz"
+    },
+    "type": "feature-flag-event"
+}

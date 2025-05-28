@@ -1,0 +1,44 @@
+﻿{
+  "Logs": [
+    {
+      "Level": 1,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "flushing 1 output messages",
+      "Exception": null
+    },
+    {
+      "Level": 0,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "POST: initiating request to bulk with: CompanyMessage { Type = Company, CompanyId = test-company-id, UserId = , Attributes = Attributes { \u0022avatar\u0022 = https://example.com/avatar.png, \u0022custom-attribute\u0022 = custom-value, \u0022name\u0022 = Test Company }, Metadata = TrackingMetadata { Active = True } }",
+      "Exception": null
+    },
+    {
+      "Level": 0,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "POST: request to bulk returned: StatusCode: 200, ReasonPhrase: \u0027OK\u0027, Version: 1.1, Content: System.Net.Http.Json.JsonContent, Headers:\n{\n  Content-Type: application/json; charset=utf-8\n}",
+      "Exception": null
+    }
+  ],
+  "Traces": [
+    {
+      "Name": "feature_flag.company_update",
+      "Tags": [
+        {
+          "Key": "feature_flag.context.company_id",
+          "Value": "test-company-id"
+        }
+      ],
+      "Events": []
+    },
+    {
+      "Name": "feature_flag.flush",
+      "Tags": [],
+      "Events": [
+        {
+          "Name": "feature_flag.output_events_flushed",
+          "Tags": []
+        }
+      ]
+    }
+  ]
+}

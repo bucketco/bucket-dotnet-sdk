@@ -1,0 +1,106 @@
+name: "Build & Test"
+
+permissions:
+  statuses: write
+  checks: write
+  contents: read
+  issues: read
+  pull-requests: write
+
+on: [push]
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+      fail-fast: false  # Don't fail all jobs if one fails
+
+    steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0  # Fetch all history for proper versioning
+
+        - name: Setup .NET 9
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: 9.0.x
+
+        - name: Cache NuGet packages
+          uses: actions/cache@v4
+          with:
+            path: ~/.nuget/packages
+            key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json', '**/packages.config', '**/*.csproj') }}
+            restore-keys: |
+              ${{ runner.os }}-nuget-
+
+        - name: Restore dependencies
+          run: dotnet restore src/Bucket.Sdk.sln
+
+        - name: Build project
+          run: dotnet build src/Bucket.Sdk.sln --configuration Release --no-restore
+
+        - name: Check .editorconfig formatting & code style
+          if: runner.os == 'Linux'  # Only run format check on one OS
+          run: |
+            make lint
+
+        - name: Test with coverage
+          id: test
+          run: dotnet test src/Bucket.Sdk.sln --configuration Release --no-build --verbosity normal --blame-hang --blame-hang-timeout 30000 --collect:"Code Coverage;Format=cobertura" --logger "trx;LogFileName=test-results.trx"
+
+        - name: Generate code coverage report
+          uses: danielpalme/ReportGenerator-GitHub-Action@5.2.3
+          with:
+            reports: '**/TestResults/**/*.cobertura.xml'
+            targetdir: 'coveragereport'
+            reporttypes: 'HtmlInline;Cobertura;Badges'
+
+        - name: Upload coverage report artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: CoverageReport-${{ matrix.os }}
+            path: coveragereport
+
+        - name: Publish Test Results
+          uses: EnricoMi/publish-unit-test-result-action@v2
+          if: ${{ always() && runner.os == 'Linux' && steps.test.conclusion != 'skipped' }}
+          with:
+            files: "**/TestResults/**/test-results.trx"
+
+        - name: Publish Test Results (Windows)
+          if: always() && runner.os == 'Windows'
+          shell: pwsh
+          run: |
+            make report
+            Get-Content coveragereport\Summary.md | Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY
+
+        - name: Publish Test Results (macOS)
+          if: always() && runner.os == 'macOS'
+          shell: bash
+          run: |
+            make report
+            cat coveragereport/Summary.md >> $GITHUB_STEP_SUMMARY
+
+  # This job runs after all build jobs complete successfully
+  summary:
+    name: CI Summary
+    needs: build
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Create summary
+        run: |
+          echo "## CI Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Build and tests completed on all platforms." >> $GITHUB_STEP_SUMMARY
+          echo "📊 Check coverage reports in the artifacts section." >> $GITHUB_STEP_SUMMARY

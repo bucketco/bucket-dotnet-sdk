@@ -1,0 +1,16 @@
+{
+    "key": "premium-dashboard",
+    "action": "check-is-enabled",
+    "evalResult": true,
+    "targetingVersion": 5,
+    "evalContext": {
+        "user.id": "user-123",
+        "company.plan": "enterprise"
+    },
+    "evalRuleResults": [
+        true,
+        false,
+        true
+    ],
+    "type": "feature-flag-event"
+}

@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Unauthorized";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-danger mt-5">
+                <div class="card-header bg-danger text-white">
+                    <h2><i class="bi bi-exclamation-triangle-fill me-2"></i>Unauthorized Access</h2>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger">
+                        <h4>You do not have permission to access this resource.</h4>
+                        <p>The feature you're trying to access is either disabled or requires additional
+                            permissions.</p>
+                    </div>
+                    <p>Please contact your administrator if you believe this is an error.</p>
+                    <a asp-controller="Todo" asp-action="Index" class="btn btn-primary">Return to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

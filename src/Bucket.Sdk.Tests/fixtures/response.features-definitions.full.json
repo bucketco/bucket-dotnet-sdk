@@ -1,0 +1,70 @@
+{
+    "success": true,
+    "features": [
+        {
+            "key": "feature-1",
+            "targeting": {
+                "version": 2,
+                "rules": [
+                    {
+                        "filter": {
+                            "type": "group",
+                            "operator": "and",
+                            "filters": [
+                                {
+                                    "type": "negation",
+                                    "filter": {
+                                        "type": "constant",
+                                        "value": false
+                                    }
+                                },
+                                {
+                                    "type": "context",
+                                    "operator": "ANY_OF",
+                                    "field": "company.name",
+                                    "values": [
+                                        "acme",
+                                        "bucket"
+                                    ]
+                                },
+                                {
+                                    "type": "rolloutPercentage",
+                                    "key": "feature-1",
+                                    "partialRolloutAttribute": "company.id",
+                                    "partialRolloutThreshold": 99999
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "config": {
+                "version": 3,
+                "variants": [
+                    {
+                        "key": "variant-1",
+                        "payload": {
+                            "some": "value"
+                        },
+                        "filter": {
+                            "type": "context",
+                            "operator": "ANY_OF",
+                            "field": "user.name",
+                            "values": [
+                                "alex",
+                                "ron"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "key": "feature-2",
+            "targeting": {
+                "version": 3,
+                "rules": []
+            }
+        }
+    ]
+}

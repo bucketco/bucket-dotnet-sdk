@@ -1,0 +1,25 @@
+﻿namespace Bucket.Sdk
+{
+    public sealed class BucketOpenFeatureProvider : OpenFeature.FeatureProvider
+    {
+        public BucketOpenFeatureProvider(Bucket.Sdk.IFeatureClient featureClient, Microsoft.Extensions.Logging.ILogger<Bucket.Sdk.BucketOpenFeatureProvider>? logger = null, Bucket.Sdk.EvaluationContextTranslatorDelegate? evaluationContextTranslator = null) { }
+        public override OpenFeature.Model.Metadata GetMetadata() { }
+        public override System.Threading.Tasks.Task InitializeAsync(OpenFeature.Model.EvaluationContext context, System.Threading.CancellationToken cancellationToken = default) { }
+        public override System.Threading.Tasks.Task<OpenFeature.Model.ResolutionDetails<bool>> ResolveBooleanValueAsync(string flagKey, bool defaultValue, OpenFeature.Model.EvaluationContext? context = null, System.Threading.CancellationToken cancellationToken = default) { }
+        public override System.Threading.Tasks.Task<OpenFeature.Model.ResolutionDetails<double>> ResolveDoubleValueAsync(string flagKey, double defaultValue, OpenFeature.Model.EvaluationContext? context = null, System.Threading.CancellationToken cancellationToken = default) { }
+        public override System.Threading.Tasks.Task<OpenFeature.Model.ResolutionDetails<int>> ResolveIntegerValueAsync(string flagKey, int defaultValue, OpenFeature.Model.EvaluationContext? context = null, System.Threading.CancellationToken cancellationToken = default) { }
+        public override System.Threading.Tasks.Task<OpenFeature.Model.ResolutionDetails<string>> ResolveStringValueAsync(string flagKey, string defaultValue, OpenFeature.Model.EvaluationContext? context = null, System.Threading.CancellationToken cancellationToken = default) { }
+        public override System.Threading.Tasks.Task<OpenFeature.Model.ResolutionDetails<OpenFeature.Model.Value>> ResolveStructureValueAsync(string flagKey, OpenFeature.Model.Value defaultValue, OpenFeature.Model.EvaluationContext? context = null, System.Threading.CancellationToken cancellationToken = default) { }
+        public override System.Threading.Tasks.Task ShutdownAsync(System.Threading.CancellationToken cancellationToken = default) { }
+        public override void Track(string trackingEventName, OpenFeature.Model.EvaluationContext? evaluationContext = null, OpenFeature.Model.TrackingEventDetails? trackingEventDetails = null) { }
+    }
+    public static class DefaultEvaluationContextTranslator
+    {
+        public static Bucket.Sdk.Context Translate(OpenFeature.Model.EvaluationContext? evaluationContext) { }
+    }
+    public delegate Bucket.Sdk.Context EvaluationContextTranslatorDelegate(OpenFeature.Model.EvaluationContext? context);
+    public static class OpenFeatureBuilderExtensions
+    {
+        public static OpenFeature.DependencyInjection.OpenFeatureBuilder AddBucketFeaturesProvider(this OpenFeature.DependencyInjection.OpenFeatureBuilder builder, Bucket.Sdk.EvaluationContextTranslatorDelegate? evaluationContextTranslator = null) { }
+    }
+}

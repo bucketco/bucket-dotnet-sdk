@@ -1,0 +1,72 @@
+name: "Publish NuGet Packages"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Build and Publish NuGet Packages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for proper versioning
+
+      - name: Setup .NET 9
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json', '**/packages.config', '**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore dependencies
+        run: dotnet restore src/Bucket.Sdk.sln
+
+      - name: Build project
+        run: dotnet build src/Bucket.Sdk.sln --configuration Release --no-restore
+
+      - name: Pack Bucket.Sdk
+        run: dotnet pack src/Bucket.Sdk/Bucket.Sdk.csproj --configuration Release --no-build --output nupkgs
+
+      - name: Pack Bucket.Sdk.OpenFeature
+        run: dotnet pack src/Bucket.Sdk.OpenFeature/Bucket.Sdk.OpenFeature.csproj --configuration Release --no-build --output nupkgs
+
+      - name: Pack Bucket.Sdk.AspNet
+        run: dotnet pack src/Bucket.Sdk.AspNet/Bucket.Sdk.AspNet.csproj --configuration Release --no-build --output nupkgs
+
+      - name: Publish packages if versions don't exist
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          for package in nupkgs/*.nupkg; do
+            packageFile=$(basename $package)
+            packageName=$(echo $packageFile | sed -r 's/\.[0-9]+\.[0-9]+\.[0-9]+.*\.nupkg$//')
+            packageVersion=$(echo $packageFile | sed -r 's/.*\.([0-9]+\.[0-9]+\.[0-9]+.*?)\.nupkg$/\1/')
+
+            echo "Checking if $packageName version $packageVersion exists on NuGet..."
+
+            # Check if this exact version exists on NuGet using v2 API
+            statusCode=$(curl -s -o /dev/null -w "%{http_code}" "https://www.nuget.org/api/v2/Packages(Id='$packageName',Version='$packageVersion')")
+
+            if [ "$statusCode" = "200" ]; then
+              echo "Version $packageVersion of $packageName already exists on NuGet, skipping..."
+              continue
+            fi
+
+            echo "Publishing $packageName version $packageVersion to NuGet"
+            dotnet nuget push $package --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json --skip-duplicate
+          done
+
+      - name: Summary
+        run: |
+          echo "## NuGet Publishing Complete" >> $GITHUB_STEP_SUMMARY
+          echo "Packages were built and published to NuGet.org" >> $GITHUB_STEP_SUMMARY
+          echo "Package versions higher than currently published ones were pushed." >> $GITHUB_STEP_SUMMARY

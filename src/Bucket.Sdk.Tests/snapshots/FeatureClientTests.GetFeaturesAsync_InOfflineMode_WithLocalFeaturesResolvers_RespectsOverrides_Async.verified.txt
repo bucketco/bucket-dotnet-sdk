@@ -1,0 +1,57 @@
+﻿{
+  "Logs": [
+    {
+      "Level": 3,
+      "Category": "Bucket.Sdk.FeatureClient",
+      "Message": "local feature feature-1 is overriding previous status of feature",
+      "Exception": null
+    }
+  ],
+  "Traces": [
+    {
+      "Name": "feature_flag.evaluation",
+      "Tags": [
+        {
+          "Key": "feature_flag.context.user_id",
+          "Value": "test-user-id"
+        }
+      ],
+      "Events": [
+        {
+          "Name": "feature_flag.evaluated",
+          "Tags": [
+            {
+              "Key": "feature_flag.key",
+              "Value": "feature-1"
+            },
+            {
+              "Key": "feature_flag.overridden",
+              "Value": true
+            },
+            {
+              "Key": "feature_flag.enabled",
+              "Value": false
+            }
+          ]
+        },
+        {
+          "Name": "feature_flag.evaluated",
+          "Tags": [
+            {
+              "Key": "feature_flag.key",
+              "Value": "feature-2"
+            },
+            {
+              "Key": "feature_flag.overridden",
+              "Value": false
+            },
+            {
+              "Key": "feature_flag.enabled",
+              "Value": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
